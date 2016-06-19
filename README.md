@@ -10,3 +10,4 @@ roman number trans arabic number(univ kadai)
 
 subブランチを作りました。
 subでの変更。
+Githubのサイトでの変更
