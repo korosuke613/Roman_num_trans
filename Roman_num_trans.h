@@ -12,7 +12,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define BUFSIZE 256 //文字列の最大値
+#define BUFSIZE 128 //文字列の最大値
 #define MAX 3999 //ローマ数字の最大値
 #define MIN 1 //ローマ数字の最小値
 
