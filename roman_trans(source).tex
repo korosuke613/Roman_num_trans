@@ -1,0 +1,138 @@
+\documentclass{jsarticle}
+\usepackage[truedimen,margin=15truemm]{geometry}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{fancyhdr}
+
+
+\pagestyle{fancy}
+\lhead{2016/6/15(水)}
+\rhead{平木場 風太}
+\rfoot{roman\_trans ver1.0}
+\cfoot{\thepage}
+
+
+\lstset{
+language={C}, basicstyle={\small},%
+identifierstyle={\small},%
+commentstyle={\small\itshape},% 
+keywordstyle={\small\bfseries},% 
+ndkeywordstyle={\small},% 
+stringstyle={\small\ttfamily}, frame={tb}, breaklines=true, columns=[l]{fullflexible},% 
+numbers=left,% 
+xrightmargin=0zw,% 
+xleftmargin=3zw,% 
+numberstyle={\scriptsize},% 
+stepnumber=1, numbersep=1zw,% 
+lineskip=-0.5ex% 
+}
+
+\begin{document}
+
+\noindent
+{\Huge roman\_trans ver1.0}\\ 
+{\large【作成者】67140390 平木場 風太}\\
+{\large【制作日】2016年6月15日}\\
+{\large【連絡先】hm14039@student.miyazaki-u.ac.jp\\
+{\large【動作環境】OS X El Capitan(10.11.5)}\\
+{\large【開発環境】gcc 4.2.1}\\
+
+
+\section{概要}
+このソフトウェアはアラビア数字をローマ数字に変換するソフトウェアです。
+\\
+
+\section{使い方}
+コマンドラインから実行してください。
+
+プログラム名の後に、引数を与えるか与えないかで挙動が異なります。
+
+\subsection{引数を与えない場合}
+プログラム実行時に引数を与えない場合、キーボードから入力された数字を変換して出力します。終了コード'q'が入力されるまで繰り返します。\\
+
+
+動作：
+\begin{enumerate}
+  \item コマンドライン上でroman\_transを実行する。
+  \item 画面の支持に従い、変換したいアラビア数字をキーボードから入力する。 \label{enum:入力}
+  \item 変換されたローマ数字が標準出力される。(異常な値が入力された場合、エラーを出力する。) 
+  	\label{enum:出力}
+  \item \ref{enum:入力},\ref{enum:出力}を繰り返す。('q'を入力したら終了)\\
+\end{enumerate}
+
+例：入力値 17
+\begin{itemize}
+\item[] \$ ./roman\_trans
+\item[] ------------------------------------------------------
+\item[] アラビア数字を入力してください(qで終了)
+\item[] 17
+\item[] XVII
+\item[] ------------------------------------------------------
+\item[] アラビア数字を入力してください(qで終了)
+\item[] q
+\end{itemize}
+
+\newpage
+\subsection{引数を与える場合}
+プログラム実行時に引数を与える場合、与えた引数を1つずつ変換し出力します。全ての引数を処理するまで繰り返します。\\
+
+動作：
+\begin{enumerate}
+  \item コマンドライン上でroman\_transを実行する。
+  \item 引数として与えたアラビア数字を1つずつローマ数字に変換し、それぞれ標準出力される。(異常な値が入力された場合、エラーメッセージを出力する。) 
+  \item 終了\\
+\end{enumerate}
+
+例：入力値 17,350,1298
+\begin{itemize}
+\item[] \$ ./roman\_trans 17 350 1298
+\item[] XVII
+\item[] CCCL
+\item[] MCCXCVIII
+\end{itemize}
+
+\section{注意事項}
+
+\begin{itemize}
+  \item ローマ数字をアラビア数字に変換することはできません。(これから搭載していきたい)
+  \item 数字のリストが記述されたテキストファイル等を引数として渡したり、パイプで複数の数字を渡したりして、それらを一括で変換して出力させる機能はありません。あくまで、引数として一つ一つ手入力する必要があります。(これから搭載していきたい)
+  \item ローマ数字は一般的な表記法として、1から3999の範囲の数字にしか対応していない\cite{roman_num}ので、それ以外の数字を入力した場合、エラーを出力します。
+  \item 数字以外の文字を入力した場合、エラーを出力します。
+  \item C言語で作られているため、コマンドラインからしか実行できません。  
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{roman_num}  ローマ数字は奥が深い・・・3999までは！ \url{http://plaza.rakuten.co.jp/higashiindo/diary/201207200000/}
+\end{thebibliography}
+
+\newpage
+付録[ソースコード]
+\lstinputlisting[caption=roman\_trans.v1.0.c]{Roman_num_trans.h}}
+
+\newpage
+{\noindent 付録[その他]\\}
+
+{\Large\noindent ★制作スケジュール}
+
+理想：6/7(月)〜6/9(木)プログラム作成、6/10(木)〜6/14(火)マニュアル作成
+
+現実：6/12(日)〜6/13(月)プログラム作成、6~14(火)〜6/15(水)マニュアル作成\\
+結局スケジュール通りに作業を進めることができなかった。製作開始がひどく遅れてしまった。実際テストも控えており、プログラミング演習の課題もあったが、そもそも5月時点で始めておけば良かった話である。プログラム自体は簡単であったため何とか納期には間に合ったが、マニュアル作成時に、ああしたいこうしたいといったアイデアが次々と浮かび、遅く始めた自分を呪った。実際の仕事だった場合、納期に間に合わないことは許されない上に、余裕があるとソフトウェアの品質を上げることもできるので、余裕を持ったスケジュールを計画・実行していきたい。\\
+
+
+{\Large\noindent ★工夫した箇所}\\
+プログラム
+\begin{itemize}
+\item 入力する値が数字以外だった場合の例外処理を実装した。
+\item 今回はソフトウェア制作ということで、普段ならしない、scanf文でのバッファオーバーフロー(バッファオーバーラン)を防ぐための方法を時間をかけて調べて、何度もテストした。結果うまく動いた。
+\item ソフトウェア実行時に引数を与えることで、余計なメッセージを出さずに効率よく変換が行えるようにした。これによりシェルスクリプトに組み込むことも用意となった。(ただし、複数の数字をパイプで渡すことができなかった。今後の課題となった。)\\
+\end{itemize}
+マニュアル
+\begin{itemize}
+\item 普段ならMSWordを使うが、今回はLaTeXで文書を作った。自分はWordよりLaTeXの方が性に合ってると思った。
+\item マニュアルを書くということで、フリーソフトにお馴染みのReadme.txtを複数参考にした。
+\item ソースコードを文書内に取り込んだ(listingsというパッケージを使っており、行番号が振られたり、インデントがずれなかったりするだけでなく、ソースファイルに変更があった時、.texファイルをいじらなくても、タイプセットすれば文書内のソースコードが更新されるというメリットもある)から楽だった。
+\end{itemize}
+
+
+\end{document}
