@@ -34,7 +34,7 @@ For more information, see `awesome-tool --help`.
 
 ## Installation
 
-$ git clone https://github.com/b4b4r07/awesome-tool
+$ git clone https://github.com/korosuke613/Roman_num_trans/
 
 ## Anything Else
 
