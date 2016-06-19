@@ -1,7 +1,7 @@
-/*--
+/**
  * Roman_num_transのヘッダファイルです。
  * Roman_num_trans.h
- --*/
+ **/
 
 #ifndef _ROMAN_NUM_TRANS_H_
 #define _ROMAN_NUM_TRANS_H_
@@ -26,7 +26,7 @@
 //構造体宣言
 struct roman_arabic { //ローマ数字とアラビア数字の変換表の構造体
     char roman[3];  /* ローマ数字 */
-        int arabic;  /* アラビア数字 */
+    int arabic;  /* アラビア数字 */
 };
 
 //プロトタイプ宣言
