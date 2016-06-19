@@ -9,4 +9,4 @@ roman number trans arabic number(univ kadai)
 ##テスト
 
 subブランチを作りました。
-masterでの変更。
+subでの変更。
