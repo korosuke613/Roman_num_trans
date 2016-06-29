@@ -56,10 +56,6 @@ int main(int argc, char* argv[])
         {"I", 1}
     }; 
 
-    pRoman = standard;
-    argc_start = 2;
-    max = MAX;
-    min = MIN;
     if(argc >= 2){
         // 9,4を抜く場合の初期化
         if(!strcmp(argv[1], "-n94")){
@@ -73,8 +69,13 @@ int main(int argc, char* argv[])
             argc_start = 3;
             max = MAX5;
         }
+    }else{
+        // 通常の初期化
+        pRoman = standard;
+        argc_start = 2;
+        max = MAX;
+        min = MIN;  
     }
-
 
     /* メインの処理 */
     if(!isatty(fileno(stdin))){
