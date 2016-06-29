@@ -14,6 +14,7 @@ CFLAGS = -g -W -Wall
 # プライマリターゲット
 $(program): $(obj)
 	$(CC) -o $(program) $^
+	$(RM) $(obj)
 
 # サフィックスルール
 .c.o:
