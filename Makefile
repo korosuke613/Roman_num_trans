@@ -1,8 +1,8 @@
 #Makefile
 
 # プログラム名とオブジェクトファイル名
-program = roman
-obj = main.o rcheck.o rtrans_print.o
+program = Roman_num_trans
+obj = main.o roman_common.o
 
 # 定義済マクロの再定義
 CC = gcc
@@ -27,5 +27,4 @@ clean:
 
 # ヘッダーファイルの依存関係
 main.o: Roman_num_trans.h
-rcheck.o: Roman_num_trans.h
-rtrans_print.o: Roman_num_trans.h
+roman_common.o: Roman_num_trans.h
