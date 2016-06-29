@@ -11,7 +11,7 @@
  **/
 int main(int argc, char* argv[])
 {
-    int i, num, argc_start, max, min;
+    int num, argc_start, max, min, opt;
     char s[BUFSIZE+1];
     Roman_arabic* pRoman;
 
@@ -56,28 +56,48 @@ int main(int argc, char* argv[])
         {"I", 1}
     }; 
 
-    if(argc >= 2){
-        // 9,4を抜く場合の初期化
-        if(!strcmp(argv[1], "-n94")){
+    //オプション
+    opt=getopt(argc,argv,"fgv");
+    switch (opt) {
+        case 'f':
+            // [-f] 9,4を抜く場合の初期化
             pRoman = not_94;
             argc_start = 3;
             max = MAX94;
             min = MIN;
-        }
-        // 5を抜く場合の初期化
-        if(!strcmp(argv[1], "-n5")){
+            break;
+
+        case 'g':
+            // [-g] 5を抜く場合の初期化
             pRoman = not_5;
             argc_start = 3;
             max = MAX5;
             min = MIN;
-        }
-    }else{
-        // 通常の初期化
-        pRoman = standard;
-        argc_start = 2;
-        max = MAX;
-        min = MIN;  
+            break;
+
+        case 'v':
+            // [-v] プログラムのバージョン出力
+            VERMSG;
+            exit(0);
+            break;
+
+        case '?':
+            // オプションが謎の場合、usageを表示する
+            USAGE(argv[0]);
+            exit(1);
+            break;
+
+        default:
+            // コマンドがない場合の初期化
+            pRoman = standard;
+            argc_start = 2;
+            max = MAX;
+            min = MIN;
+            break;
+
     }
+
+
 
     /* メインの処理 */
     if(!isatty(fileno(stdin))){
@@ -93,18 +113,6 @@ int main(int argc, char* argv[])
 
     }else{
         //標準入力がない場合
-
-        //プログラム実行時に引数があった場合
-        if(argc >= argc_start){
-            for(i=argc_start-1; i<argc; i++){
-                if(rcheck(argv[i], max, min))continue; //入力値が異常だと、ループを初めからにする
-                num = atoi(argv[i]);
-                rtrans_print(num, pRoman);  //与えた整数をローマ数字に変換し、標準出力する
-            }
-            return 0;
-        }
-
-        //プログラム実行時に引数がなかった場合
         while(1){
             printf("---------------\n" );
             printf("アラビア数字を入力してください(qで終了)\n");
