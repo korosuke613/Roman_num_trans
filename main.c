@@ -11,10 +11,11 @@
  **/
 int main(int argc, char* argv[])
 {
-    int i, num;
+    int i, num, argc_start;
     char s[BUFSIZE+1];
-    Roman_arabic* b;
-    Roman_arabic normal[13]={
+    Roman_arabic* pRoman;
+
+    Roman_arabic standard[13]={
         {"M", 1000},
         {"CM", 900},
         {"D", 500},
@@ -29,8 +30,39 @@ int main(int argc, char* argv[])
         {"IV", 4},
         {"I", 1}
     };
-    
-    b = normal;
+
+    Roman_arabic not_94[13]={
+        {"M", 1000},
+        {"D", 500},
+        {"C", 100},
+        {"L", 50},
+        {"X", 10},
+        {"V", 5},
+        {"I", 1}
+    };
+
+    Roman_arabic not_5[13]={
+        {"M", 1000},
+        {"C", 100},
+        {"X", 10},
+        {"I", 1}
+    }; 
+
+
+    pRoman = standard;
+    argc_start = 2;
+    if(argc >= 2){
+    if(!strcmp(argv[1], "-n94")){
+        printf("ii\n");
+        pRoman = not_94;
+        argc_start = 3;
+    }
+    if(!strcmp(argv[1], "-n5")){
+        pRoman = not_5;
+        argc_start = 3;
+    }
+    }
+
 
     if(!isatty(fileno(stdin))){
         //標準入力がある場合
@@ -39,7 +71,7 @@ int main(int argc, char* argv[])
             if(feof(stdin)) break; //標準入力が終了したらループを抜ける
             if(rcheck(s))continue; // 入力値が異常だと、ループを初めからにする
             num = atoi(s);
-            rtrans_print(num, b);
+            rtrans_print(num, pRoman);
         }
         return 0;
 
@@ -47,11 +79,11 @@ int main(int argc, char* argv[])
         //標準入力がない場合
 
         //プログラム実行時に引数があった場合
-        if(argc >= 2){
-            for(i=1; i<argc; i++){
+        if(argc >= argc_start){
+            for(i=argc_start-1; i<argc; i++){
                 if(rcheck(argv[i]))continue; //入力値が異常だと、ループを初めからにする
-                    num = atoi(argv[i]);
-                rtrans_print(num, b);  //与えた整数をローマ数字に変換し、標準出力する
+                num = atoi(argv[i]);
+                rtrans_print(num, pRoman);  //与えた整数をローマ数字に変換し、標準出力する
             }
             return 0;
         }
@@ -64,7 +96,7 @@ int main(int argc, char* argv[])
             if(s[0]=='q')exit(0);  //'q'で終了
             if(rcheck(s))continue; //入力値が異常だと、ループを初めからにする
             num = atoi(s);
-            rtrans_print(num, b);  //与えた整数をローマ数字に変換し、標準出力する
+            rtrans_print(num, pRoman);  //与えた整数をローマ数字に変換し、標準出力する
         }
 
         return 0;
