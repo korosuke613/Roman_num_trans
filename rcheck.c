@@ -14,11 +14,11 @@ int rcheck(char* str, int max, int min){
         i++;
     }
     if(frag) {
-        ER_NO_INT;
+        ER_NO_INT; // エラーを標準出力する。
         return 1;
     }
     if(atoi(str) > max || atoi(str) < min){
-        ER_REMITES_OVER(min, max);
+        ER_REMITES_OVER(min, max); // エラーを標準出力する。
         return 1;
     }
     return 0;

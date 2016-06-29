@@ -15,7 +15,8 @@ int main(int argc, char* argv[])
     char s[BUFSIZE+1];
     Roman_arabic* pRoman;
 
-    Roman_arabic standard[17]={
+    /* 初期化 */
+    Roman_arabic standard[17]={ //通常
         {"ↂ ", 10000},
         {"Mↂ ", 9000},
         {"ↁ", 5000},
@@ -35,7 +36,7 @@ int main(int argc, char* argv[])
         {"I", 1}
     };
 
-    Roman_arabic not_94[9]={
+    Roman_arabic not_94[9]={ //9,4を抜いた場合
         {"ↂ ", 10000},
         {"ↁ", 5000},
         {"M", 1000},
@@ -47,7 +48,7 @@ int main(int argc, char* argv[])
         {"I", 1}
     };
 
-    Roman_arabic not_5[5]={
+    Roman_arabic not_5[5]={ //5を抜いた場合
         {"ↂ ", 10000},
         {"M", 1000},
         {"C", 100},
@@ -55,25 +56,27 @@ int main(int argc, char* argv[])
         {"I", 1}
     }; 
 
-
     pRoman = standard;
     argc_start = 2;
     max = MAX;
     min = MIN;
     if(argc >= 2){
-    if(!strcmp(argv[1], "-n94")){
-        pRoman = not_94;
-        argc_start = 3;
-        max = MAX94;
-    }
-    if(!strcmp(argv[1], "-n5")){
-        pRoman = not_5;
-        argc_start = 3;
-        max = MAX5;
-    }
+        // 9,4を抜く場合の初期化
+        if(!strcmp(argv[1], "-n94")){
+            pRoman = not_94;
+            argc_start = 3;
+            max = MAX94;
+        }
+        // 5を抜く場合の初期化
+        if(!strcmp(argv[1], "-n5")){
+            pRoman = not_5;
+            argc_start = 3;
+            max = MAX5;
+        }
     }
 
 
+    /* メインの処理 */
     if(!isatty(fileno(stdin))){
         //標準入力がある場合
         while(1){
