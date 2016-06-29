@@ -1,0 +1,83 @@
+\documentclass[10.5pt]{jsarticle}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+
+
+\begin{document}
+\title{平成２８年度 ソフトウェア工学 レポート課題 Part2\\「ソフトウェアのマニュアル作成」}
+\date{}
+\maketitle
+
+\begin{flushright}
+{\large 平性28年6月29日}\\
+{\large 67140390 平木場 風太}\\
+{\large hm14039@student.miyazaki-u.ac.jp}\\
+\end{flushright}
+
+\vspace{0.5in}
+
+\begin{large}
+\begin{enumerate}
+\item 設計方針及び時間の見積もり
+
+\begin{itemize}
+  \item \textcircled{\scriptsize 1}の場合、ローマ数字とアラビア数字を扱う構造体に5000,10000にあたるローマ数字を追加し、ヘッダファイルに記載されている最大値、最小値、エラーメッセージの内容を変更することで実装する。時間の見積もりは30分。
+
+  \item \textcircled{\scriptsize 2}の場合、コマンドラインからプログラムを実行する際にオプションを付けることでそれぞれの場合に対応する。getopt関数を使い判定し、使用する構造体を変更することで実装する。また、それぞれの場合の最大値もその都度変わるようにする。時間の見積もりは1時間。\\
+\end{itemize}
+
+\item 前回作ったプログラムに対する入力と結果
+
+\begin{enumerate}[入力(1)]
+  \item 19 → XIX
+  \item 555 → DLV
+  \item 840 → DCCCXL
+  \item 2016 → MMXVI
+  \item 1239 → MCCXXXIX
+  \item 12345 → ERR:ローマ数字は1〜3999までの数字しか扱えません
+  \item 100000 → ERR:ローマ数字は1〜3999までの数字しか扱えません
+  \item 0 → ERR:ローマ数字は1〜3999までの数字しか扱えません
+  \item 3.14 → ERR:数字以外が入力されました
+  \item -11 → ERR:数字以外が入力されました
+  \item 12MX → ERR:数字以外が入力されました
+  \item 20, 4, 1605 → ERR:数字以外が入力されました
+  \item 数字 → ERR:数字以外が入力されました
+\end{enumerate}
+
+\newpage
+\item 上記の結果は不満足である。該当箇所は9,10。
+
+9,10に関して、3.14も-11も数字であるにも関わらず、数字でないというエラーメッセージが出ているからである。これは入力した文字で\verb|^|[0-9]に該当する文字を数字ではないと判断しているため。\\
+
+\item 書いておいたほうが良かったと思うこと
+\begin{itemize}
+  \item ダウンロード場所を記載しておくべきだった。
+  \item インストール方法を記載しておくべきだった。
+  \item 書いておいたほうが良かったことではないが、前回のマニュアルの最後のページの感想等はマニュアルと切り離すべきだった。\\
+\end{itemize}
+
+\item 先に提出したプログラムとマニュアルの満足度自己評価
+\begin{itemize}
+  \item プログラム：70\%
+  
+  パイプまたはリダイレクトによる入力ができなかったため、それができれば活用の幅が広がったと考えた為。少数や負の数を数字でないと評価してしまった為。\\
+  \item マニュアル：60\%
+  
+  ダウンロード方法及びインストール方法を記載していなかった為。また、感想等をマニュアルに記載してしまった為。
+\end{itemize}
+
+
+
+
+
+
+\end{enumerate}
+\end{large}
+
+
+
+\end{document}
