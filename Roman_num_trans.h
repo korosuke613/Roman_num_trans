@@ -24,13 +24,13 @@
 #define  XSTR(s)  STR(s)
 
 //構造体宣言
-struct roman_arabic { //ローマ数字とアラビア数字の変換表の構造体
+typedef struct { //ローマ数字とアラビア数字の変換表の構造体
     char roman[3];  /* ローマ数字 */
     int arabic;  /* アラビア数字 */
-};
+}Roman_arabic;
 
 //プロトタイプ宣言
 int rcheck(char* str);
-void rtrans_print(int num, struct roman_arabic* a);
+void rtrans_print(int num, Roman_arabic* a);
 
 #endif //_ROMAN_NUM_TRANS_H_

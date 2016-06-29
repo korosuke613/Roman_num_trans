@@ -13,7 +13,8 @@ int main(int argc, char* argv[])
 {
     int i, num;
     char s[BUFSIZE+1];
-    struct roman_arabic b[13]={
+    Roman_arabic* b;
+    Roman_arabic normal[13]={
         {"M", 1000},
         {"CM", 900},
         {"D", 500},
@@ -28,6 +29,8 @@ int main(int argc, char* argv[])
         {"IV", 4},
         {"I", 1}
     };
+    
+    b = normal;
 
     if(!isatty(fileno(stdin))){
         //標準入力がある場合

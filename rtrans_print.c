@@ -9,7 +9,7 @@
  * 返り値 なし
  * 引数 変換するアラビア数字、変換表
  **/
-void rtrans_print(int num, struct roman_arabic* a){
+void rtrans_print(int num, Roman_arabic* a){
     int i=0;
     char str[BUFSIZE]="0";
 
