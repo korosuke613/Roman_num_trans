@@ -62,12 +62,14 @@ int main(int argc, char* argv[])
             pRoman = not_94;
             argc_start = 3;
             max = MAX94;
+            min = MIN;
         }
         // 5を抜く場合の初期化
         if(!strcmp(argv[1], "-n5")){
             pRoman = not_5;
             argc_start = 3;
             max = MAX5;
+            min = MIN;
         }
     }else{
         // 通常の初期化
